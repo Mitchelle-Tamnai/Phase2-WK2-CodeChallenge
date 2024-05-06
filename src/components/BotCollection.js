@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from "react";
+import Enlist from "./EnlistButton";
 
 function BotCollection() {
     const [data, setData] = useState({bots : []})
@@ -24,13 +25,14 @@ function BotCollection() {
                                 <h5 className="card-title">{i.name}</h5>
                                 <p>{i.catchphrase}</p>
                                 <p> 
-                                {i.health} <span>&#9829;</span> | {i.damage} <span>&#128165;</span> | {i.armour} <span>&#128737;</span>
+                                {i.health} <span>&#9829;</span> | {i.damage} <span>&#128165;</span> | {i.armor} <span>&#128737;</span>
                                 </p>
                                 <ul className="list-unstyled">
                                     <li>{i.created_at}</li>
                                     <li>{i.updated_at}</li>
                                 </ul>
-                                
+                                <button type="button" class="btn btn-primary btn-sm m-3">View</button>
+                                <Enlist/>
                             </div>
                         </div>
                     </div>
