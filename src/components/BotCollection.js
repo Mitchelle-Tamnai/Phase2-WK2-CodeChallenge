@@ -7,26 +7,37 @@ function BotCollection() {
         fetch("http://localhost:3000/bots")
         .then(resp => resp.json())
         .then ((bots) => {
-            setData({bots : bots})
+            setData({bots})
         })
         //console.log(data)
     }, [])
 
     return (
-        <div className="card" style={{ width: "18rem" }}>
-            <img className="card-img-top" src={data.bots.avatar_url}  alt="Bot" />
-            <div className="card-body">
-                <ul className="card-text">
-                    <li>{data.bots.name}</li>
-                    <li>{data.bots.health}</li>
-                    <li>{data.bots.damage}</li>
-                    <li>{data.bots.armour}</li>
-                    <li>{data.bots.catchphrase}</li>
-                    <li>{data.bots.created_at}</li>
-                    <li>{data.bots.updated_at}</li>
-                </ul>
+
+        <div className="container">
+            <div className="row justify-content-center">
+                {data.bots.map(i => (
+                    <div key={i.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div className="card">
+                            <img className="card-img-top" src={i.avatar_url} alt="Bot" />
+                            <div className="card-body">
+                                <h5 className="card-title">{i.name}</h5>
+                                <p>{i.catchphrase}</p>
+                                <p> 
+                                {i.health} <span>&#9829;</span> | {i.damage} <span>&#128165;</span> | {i.armour} <span>&#128737;</span>
+                                </p>
+                                <ul className="list-unstyled">
+                                    <li>{i.created_at}</li>
+                                    <li>{i.updated_at}</li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
+
     )
     
 }
