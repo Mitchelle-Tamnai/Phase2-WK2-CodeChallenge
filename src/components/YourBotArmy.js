@@ -4,17 +4,18 @@ function YourBotArmy() {
     const [armyBots, setArmyBots] = useState([])
 
     useEffect(()=> {
-        fetch("http://localhost:3000/bots", {
+        fetch("http://localhost:4000/bots", {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
             },
-            body : JSON.stringify(armyBots)
+            body: JSON.stringify({})
 
         })
         .then(resp => resp.json())
-        .then(
-            setArmyBots()
+        .then((bots)=>{
+            console.log("Received bots:", bots);
+            setArmyBots(bots)}
         )
 
     }, [])
@@ -22,7 +23,7 @@ function YourBotArmy() {
         <div>
             <div className="container">
             <div className="row justify-content-center">
-                {data.bots.map(i => (
+                {armyBots.map(i => (
                     <div key={i.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div className="card">
                             <img className="card-img-top" src={i.avatar_url} alt="Bot" />

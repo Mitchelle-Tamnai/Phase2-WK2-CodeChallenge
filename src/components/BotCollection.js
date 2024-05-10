@@ -5,12 +5,12 @@ function BotCollection() {
     const [data, setData] = useState({bots : []})
 
     useEffect(() => {
-        fetch("http://localhost:3000/bots")
+        fetch("http://localhost:4000/bots")
         .then(resp => resp.json())
         .then ((bots) => {
             setData({bots})
         })
-        //console.log(data)
+        
     }, [])
 
     return (
